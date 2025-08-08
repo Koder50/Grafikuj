@@ -5,6 +5,10 @@ Node version 12.15.0 win x64.
 For full details look at package.json . 
 It is few years old version.
 
+## Technologies
+
+Angular, CSS, HTML, Typescript,Javascript, Node
+
 ## Development server
 
 At start run `npm install`.
