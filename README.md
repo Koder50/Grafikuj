@@ -1,7 +1,9 @@
 # Grafikuj
 
 Angular CLI version 9.0.1.
-Node version 12.15.0 win x64. It is few years old version.
+Node version 12.15.0 win x64. 
+For full details look at package.json . 
+It is few years old version.
 
 ## Development server
 
