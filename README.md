@@ -23,7 +23,7 @@ Grafikuj it's mixing of in Polish grafika (English graphics) and in Polish maluj
 
 This project last code updates were about 4 years ago. It was my early programming learning time. I know that this project in future should be refactored and modular etc. 
 
-## Core facts
+## Instruction for use
 
 1) Grafikuj user interface, there are Polish words.
 2) There is 'Autozapis' (autosave) every 15 minutes. If you click on it you can choose or switch off that option. It is every time saved in 'Downloads' folder.
