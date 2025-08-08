@@ -1,0 +1,1564 @@
+<div class="strona biala">
+
+  <section class="abc">
+
+    <main>
+      <div class="tytul" [style.width.px]="this.szerokoscGlowna">
+        <h2 class="tytulGrafikuj bg-success text-white noselect" [style.width.px]="this.szerokoscGlowna">Grafikuj<!--{{this.model.wyswietlKomunikat(3)}}--></h2>
+      </div>
+      
+	  <div class="glowneZewnetrzne bg-secondary noselect" [style.width.px]="this.szerokoscGlowna" [style.height.px]="this.wysokoscGlowna2">
+	  
+	  <div class="zapewnijWymiar text-white" *ngIf="(this.zwrocWymiary().bottom-this.zwrocWymiary().top)<=500">Wysokość ekranu programu jest obecnie za mała. Zapewnij wysokość co najmniej 628 px, aby aplikacja działała poprawnie.</div>
+	  
+		<div class="glowne bg-secondary noselect" [class.ukryte2]="(this.zwrocWymiary().bottom-this.zwrocWymiary().top)<=500" [style.width.px]="this.szerokoscGlowna+20" [style.height.px]="this.wysokoscGlowna2" (mousemove)="dodajWPrawo(2,$event); poruszaj2($event);
+	  ruszajModalem($event); ruszajModalem2($event); ruszajModalem3($event); ruszajModalem4($event); ruszajModalem5($event); ruszajModalem6($event); ruszajModalem7($event); ruszajModalem8($event);
+	   ruszajModalem9($event); ruszajModalem10($event); ruszajModalem11($event); ruszajModalem12($event); ruszajModalem13($event); ruszajModalem14($event); ruszajModalem15($event);
+	    ruszajModalem16($event); ruszajModalem17($event); ruszajModalem18($event); ruszajModalem19($event); ruszajModalemPaleta($event);"
+				 (mouseup)="dodajWPrawo(3,$event); koniecRuszania($event); koniecRuszania2($event); koniecRuszania3($event); koniecRuszania4($event); koniecRuszania5($event); koniecRuszania6($event);
+	  koniecRuszania7($event); koniecRuszania8($event); koniecRuszania9($event); koniecRuszania10($event); koniecRuszania11($event); koniecRuszania12($event); koniecRuszania13($event);
+	   koniecRuszania14($event); koniecRuszania15($event); koniecRuszania16($event); koniecRuszania17($event); koniecRuszania18($event); koniecRuszania19($event); koniecRuszaniaPaleta($event);"
+				 [class.kursor1]="this.czyWPrawo" [class.kursor2]="this.czyPoPrzekatnej" [class.kursor3]="this.czyWDol"> 
+
+			<div class="wyborZewnetrzny" [class.nieWyswietlaj]="this.zwrocCzyWypelnienieTrwa()" [style.height.px]="this.wysokoscGlowna2" [class.ukryte2]="(this.zwrocWymiary().bottom-this.zwrocWymiary().top)<=500">
+				<div class="wybor" [class.nieWyswietlaj]="this.zwrocCzyWypelnienieTrwa()" [style.height.px]="this.wysokoscGlowna2" [class.ukryte2]="(this.zwrocWymiary().bottom-this.zwrocWymiary().top)<=500">
+				
+					<ul class="tab-list">
+						<li class="plik" [class.aktywny]="this.numerKarty == 0"><a class="tab-control" (click)="kliknijKarte(0)">Plik</a></li>
+						<li class="narzedzia" [class.aktywny]="this.numerKarty == 1"><a class="tab-control" (click)="kliknijKarte(1)">Narzędzia</a></li>
+						<li class="widok" [class.aktywny]="this.numerKarty == 2"><a class="tab-control" (click)="kliknijKarte(2)">Widok</a></li>
+					</ul>
+
+					<div class="krawedzDolna2"></div>
+
+
+					<label class="wyrownaj" *ngIf="czyWspGrafiki.checked==true">
+						<fa-icon [icon]="faArrowsAltH" [styles]="{'width': '20px', 'height': '20px', 'color': '#343a40', 'margin': '0px', 'margin-left': '15px'}"
+										 title="Współrzędne grafiki"></fa-icon>
+						<fa-icon [icon]="faArrowsAltV" [styles]="{'width': '20px', 'height': '20px', 'color': '#343a40', 'margin': '0px', 'margin-left': '0px'}"
+										 title="Współrzędne grafiki"></fa-icon>{{this.wspX}}(x), {{this.wspY}}(y)
+					</label>
+					<br *ngIf="czyWspGrafiki.checked==true">
+					<label class="wyrownaj" *ngIf="czyWspObszaruRoboczego.checked==true">
+						<fa-icon [icon]="faArrowsAltH" [styles]="{'width': '20px', 'height': '20px', 'color': '#343a40', 'margin': '0px', 'margin-left': '15px'}"
+										 title="Współrzędne obszaru roboczego"></fa-icon>
+						<fa-icon [icon]="faArrowsAltV" [styles]="{'width': '20px', 'height': '20px', 'color': '#343a40', 'margin': '0px', 'margin-left': '0px'}"
+										 title="Współrzędne obszaru roboczego"></fa-icon>{{this.wspX2}}(x), {{this.wspY2}}(y)
+					</label>
+					<br *ngIf="czyWspObszaruRoboczego.checked==true">
+					<label *ngIf="czyRozmiar.checked==true" class="wielkosc wyrownaj">
+						<fa-icon [icon]="faArrowsAlt" [styles]="{'width': '20px', 'height': '20px', 'color': '#343a40', 'margin': '0px', 'margin-left': '15px'}"
+										 title="Współrzędne grafiki"></fa-icon>
+						Rozmiar: {{this.mnoznik*100}} %
+						<br>{{this.szerokosc}}(px) x {{this.wysokosc}}(px)
+					</label>
+					<br *ngIf="czyRozmiar.checked==true">
+
+					<label class="wysrodkuj" *ngIf="czyWspGrafiki.checked==true || czyWspObszaruRoboczego.checked==true || czyRozmiar.checked==true">Współrzędne</label>
+
+					<div class="tab-panel" [class.aktywny]="this.numerKarty == 0" id="Plik">
+
+						<label class="wyrownaj" (click)="this.pokazP=!this.pokazP;">
+							<fa-icon [icon]="faSave"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'black', 'margin': '0px', 'margin-left': '5px'}"
+											 title="Zapisz plik">
+							</fa-icon> Zapisz plik
+						</label>
+						
+						<div class="modalZapisz" [class.krawedzModala]="this.krawedzModala" *ngIf="this.pokazP" [style.margin-top.px]="this.gora" [style.margin-left.px]="this.lewo" (mousedown)="kliknij($event)">
+							<div class="pasekTytulu">
+								<label class="zap">Zapisywanie pliku</label>
+								<fa-icon *ngIf="this.najechanie" [icon]="faTimes" (mouseover)="this.najechanie=true" (mouseout)="this.najechanie=!this.najechanie" (click)="this.pokazP=!this.pokazP;this.gora = -35;this.lewo = 40;
+				  this.najechanie=false; this.krawedzModala=true;"
+												 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding': '7px', 'margin-left': '0px'}"
+												 title="Zamknij">
+								</fa-icon>
+								<fa-icon *ngIf="!this.najechanie" [icon]="faTimes" (mouseover)="this.najechanie=true" (mouseout)="this.najechanie=!this.najechanie" (click)="this.pokazP=!this.pokazP;this.gora = -35;this.lewo = 40;
+				  this.najechanie=false; this.krawedzModala=true;"
+												 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+												 title="Zamknij">
+								</fa-icon>
+							</div>
+							<form>
+							<fieldset>
+								<legend>Zapisywanie pliku</legend>
+
+								<input [class.ukryte]="!this.pokazP" #nazwaPliku class="rozmiarPliku1 form-control nazwa" type="text" placeholder="nazwa.png" />
+							</fieldset>
+							</form>
+							<button [class.ukryte]="!this.pokazP" class="btn btn-success text-dark form-control cofnij11" value="Zapisz grafike"
+											(click)="zapiszGrafike(nazwaPliku.value); this.pokazP=!this.pokazP">
+								Zapisz
+							</button>
+
+							<button [class.ukryte]="!this.pokazP" class="btn btn-success text-dark form-control cofnij1" value="Anuluj" (click)="this.pokazP=!this.pokazP;this.gora = -35;this.lewo = 40;
+				 this.krawedzModala=true;">
+								Anuluj
+							</button>
+
+						</div>
+						<div [class.ukryte2]="!this.czyPoOryginalnym">
+
+							<label class="wyrownaj" (click)="this.pokazZ=!this.pokazZ">
+								<fa-icon [icon]="faFileDownload"
+												 [styles]="{'width': '20px', 'height': '20px', 'color': 'black', 'margin': '0px', 'margin-left': '5px'}"
+												 title="Otworz plik">
+								</fa-icon> Otwórz plik
+							</label>
+							<br *ngIf="this.pokazZ">
+
+							<div class="modalZapisz2" [class.krawedzModala2]="this.krawedzModala2" *ngIf="this.pokazZ && this.lupa=='normalny'" [style.margin-top.px]="this.gora2" [style.margin-left.px]="this.lewo2" (mousedown)="kliknij2($event)">
+								<div class="pasekTytulu">
+									<label class="zap2">Otwieranie pliku</label>
+									<fa-icon *ngIf="this.najechanie2" [icon]="faTimes" (mouseover)="this.najechanie2=true" (mouseout)="this.najechanie2=!this.najechanie2" (click)="this.pokazZ=!this.pokazZ;this.gora2 = -35;this.lewo2 = 40;
+					this.najechanie2=false; this.krawedzModala2=true;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie2" [icon]="faTimes" (mouseover)="this.najechanie2=true" (mouseout)="this.najechanie2=!this.najechanie2" (click)="this.pokazP=!this.pokazP;this.gora2 = -35;this.lewo2 = 40;
+					this.najechanie2=false; this.krawedzModala2=true;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend">Otwieranie pliku</legend>
+
+									<div class="otworzBlok" [class.ukryte]="!this.pokazZ">
+										<input type="file" class="otworz" id="file-selector" (change)="otworzGrafike($event,czyNowyObraz.checked)" accept=".jpg, .jpeg, .png">
+									</div>
+									<input [class.ukryte]="!this.pokazZ" class="czyWspolrzedne form-control" #czyNowyObraz type="checkbox" checked="checked" title="Czy tylko nowy plik" />
+									<br>
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazZ" class="btn btn-success text-dark form-control cofnij2" value="Anuluj" (click)="this.pokazZ=!this.pokazZ;this.gora2 = -35;this.lewo2 = 40; this.krawedzModala2=true;">
+									Anuluj
+								</button>
+								
+							</div>
+						</div>
+
+						<label class="wysrodkuj">Plik</label>
+
+						<label class="wyrownaj" (click)="this.pokazS=!this.pokazS;">
+							
+							<fa-icon [icon]="faSave"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'blue', 'margin': '0px', 'margin-left': '5px'}"
+											 title="Autozapis co {{this.czasAutozapisu}} minut">
+							</fa-icon>
+							
+							Autozapis
+						</label>
+
+						<div class="modalZapisz3" [class.krawedzModala3]="this.krawedzModala3" *ngIf="this.pokazS" [style.margin-top.px]="this.gora3" [style.margin-left.px]="this.lewo3" (mousedown)="kliknij3($event)">
+
+							<div class="pasekTytulu">
+								<label class="zap3">Autozapis</label>
+								<fa-icon *ngIf="this.najechanie3" [icon]="faTimes" (mouseover)="this.najechanie3=true" (mouseout)="this.najechanie3=!this.najechanie3" (click)="this.pokazS=!this.pokazS;this.gora3 = -35;this.lewo3 = 40;
+								this.najechanie3=false; this.krawedzModala3=true;"
+												 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+												 title="Zamknij">
+								</fa-icon>
+								<fa-icon *ngIf="!this.najechanie3" [icon]="faTimes" (mouseover)="this.najechanie3=true" (mouseout)="this.najechanie3=!this.najechanie3" (click)="this.pokazS=!this.pokazS;this.gora3 = -35;this.lewo3 = 40;
+								this.najechanie3=false; this.krawedzModala3=true;"
+												 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+												 title="Zamknij">
+								</fa-icon>
+							</div>
+							<fieldset>
+								<legend class="legend3">Autozapis</legend>
+								<div class="razem">
+									<label class="wyrownaj4" (click)="czyAutozapis.checked=!czyAutozapis.checked">Czy autozapis</label>
+									<input #czyAutozapis class="czyWspolrzedne0 form-control srodeczek" type="checkbox" (change)="sprawdzCzyAutozapis(czyAutozapis.checked)" checked="checked" title="Czy autozapis" />
+								</div>
+							</fieldset>
+
+							<button [class.ukryte]="!this.pokazS" class="btn btn-success text-dark form-control cofnij3" value="Anuluj" (click)="this.pokazS=!this.pokazS;this.gora3 = -35;this.lewo3 = 40;
+							   this.krawedzModala3=true;">
+								Anuluj
+							</button>
+
+						</div>
+
+						<label class="wysrodkuj">Autozapis</label>
+
+
+
+					</div>
+					<div class="tab-panel" [class.aktywny]="this.numerKarty == 1" id="Narzedzia">
+
+						<div [class.ukryte]="!this.czyPoOryginalnym">
+
+							<label class="wyrownaj" (click)="sprawdzPokazRo()">
+								<fa-icon [icon]="faArrowsAlt" [styles]="{'width': '20px', 'height': '20px', 'color': '#343a40', 'margin': '0px', 'margin-left': '0px'}"
+												 title="Współrzędne grafiki"></fa-icon> Zmień rozmiar grafiki
+							</label>
+
+							<div class="modalZapisz4" [class.krawedzModala4]="this.krawedzModala4" *ngIf="this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo
+				 && !this.pokazEl && !this.pokazTr" [style.margin-top.px]="this.gora4" [style.margin-left.px]="this.lewo4" (mousedown)="kliknij4($event)">
+
+								<div class="pasekTytulu">
+									<label class="zap4">Zmień rozmiar grafiki</label>
+									<fa-icon *ngIf="this.najechanie4" [icon]="faTimes" (mouseover)="this.najechanie4=true" (mouseout)="this.najechanie4=!this.najechanie4" (click)="this.pokazRo=!this.pokazRo;this.gora4 = -35;this.lewo4 = 15;
+								this.najechanie4=false; this.krawedzModala4=true;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie4" [icon]="faTimes" (mouseover)="this.najechanie4=true" (mouseout)="this.najechanie4=!this.najechanie4" (click)="this.pokazRo=!this.pokazRo;this.gora4 = -35;this.lewo4 = 15;
+								this.najechanie4=false; this.krawedzModala4=true;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend4">Zmień rozmiar grafiki</legend>
+									<div class="razem2">
+										<input #wartoscSzerokosci class="rozmiar form-control" type="text" placeholder="x(px)" [class.ukryte]="this.lupa!='normalny' || !this.pokazRo" title="Szerokość grafiki w pikselach" />
+										<input #wartoscWysokosci class="rozmiar form-control" type="text" placeholder="y(px)" [class.ukryte]="this.lupa!='normalny' || !this.pokazRo" title="Wysokość grafiki w pikselach" />
+										<input #wartoscBoola class="czyCaleTlo form-control" type="checkbox" [class.ukryte]="this.lupa!='normalny' || !this.pokazRo" title="Czy dodać tło" />
+									</div>
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazRo" class="btn btn-success text-dark form-control cofnij4" value="Anuluj" (click)="this.pokazRo=!this.pokazRo;this.gora4 = -35;this.lewo4 = 15;
+							  ; this.krawedzModala4=true;">
+									Anuluj
+								</button>
+								<button [class.ukryte]="this.lupa!='normalny' || !this.pokazRo" class="btn btn-success text-dark form-control cofnij4" value="Zmień"
+												(click)="zmienRozmiar(wartoscWysokosci.value,wartoscSzerokosci.value,wartoscBoola.checked,true)" title="Zmień Rozmiar Całej Grafiki">
+									Zmień
+								</button>
+							</div>
+
+							<br *ngIf="this.pokazF">
+							<label class="wyrownaj" (click)="sprawdzPokazF()">
+								<fa-icon [icon]="faArrowsAlt" [styles]="{'width': '20px', 'height': '20px', 'color': '#343a40', 'margin': '0px', 'margin-left': '0px'}"
+												 title="Współrzędne grafiki"></fa-icon> Zmień rozmiar funkcji
+							</label>
+
+							<div class="modalZapisz5" [class.krawedzModala5]="this.krawedzModala5" *ngIf="this.pokazF && !this.pokazRo && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo
+				 && !this.pokazEl && !this.pokazTr" [style.margin-top.px]="this.gora5" [style.margin-left.px]="this.lewo5" (mousedown)="kliknij5($event)">
+
+								<div class="pasekTytulu">
+									<label class="zap5">Zmień rozmiar funkcji</label>
+									<fa-icon *ngIf="this.najechanie5" [icon]="faTimes" (mouseover)="this.najechanie5=true" (mouseout)="this.najechanie5=!this.najechanie5" (click)="this.pokazF=!this.pokazF;this.gora5 = -35;this.lewo5 = 15;
+								this.najechanie5=false; this.krawedzModala5=true;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie5" [icon]="faTimes" (mouseover)="this.najechanie5=true" (mouseout)="this.najechanie5=!this.najechanie5" (click)="this.pokazF=!this.pokazF;this.gora5 = -35;this.lewo5 = 15;
+								this.najechanie5=false; this.krawedzModala5=true;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend5">Zmień rozmiar funkcji</legend>
+									<div class="razem3">
+										<input [class.ukryte]="!this.pokazF" #wartoscRozmiaruF class="rozmiar form-control" type="text" placeholder="(px)" title="Rozmiar/Bok funkcji w pikselach np. ołówka" />
+									</div>
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazF" class="btn btn-success text-dark form-control cofnij5" value="Anuluj" (click)="this.pokazF=!this.pokazF;this.gora5 = -35;this.lewo5 = 15;this.krawedzModala5=true;">
+									Anuluj
+								</button>
+								<button [class.ukryte]="!this.pokazF" class="btn btn-success text-dark form-control cofnij5" value="Zmień"
+												(click)="zmienRozmiarFunkcji(wartoscRozmiaruF.value)" title="Zmień Rozmiar/Bok funkcji">
+									Zmień
+								</button>
+							</div>
+
+
+							<label class="wysrodkuj">Rozmiary</label>
+
+							<br>
+							<div class="mojeKolory">
+								<div class="zielony bg-success" (click)="wybierzKolor('rgba(40, 167, 69, 1)')" title="Zielony"></div>
+								<div class="niebieski bg-primary" (click)="wybierzKolor('rgba(0, 123, 255, 1)')" title="Niebieski"></div>
+								<div class="czerwony bg-danger" (click)="wybierzKolor('rgba(220, 53, 69, 1)')" title="Czerwony"></div>
+								<div class="zolty bg-warning" (click)="wybierzKolor('rgba(255, 193, 7, 1)')" title="Żółty"></div>
+								<div class="czarny bg-dark" (click)="wybierzKolor('rgba(52,58,64, 1)')" title="Czarny"></div>
+								<div class="bialy bg-white" (click)="wybierzKolor('rgba(255, 255, 255, 1)')" title="Biały"></div>
+
+								<div class="inny" [style.background-color]="this.kolor" title="Bieżący kolor: {{this.kolor}}"></div>
+
+								<div class="fioletowy" [class.margin-top.px]="-5" (click)="wybierzKolor('rgba(111, 66, 193, 1)')" title="Fioletowy"></div>
+								<div class="brązowy" (click)="wybierzKolor('rgba(185, 122, 87, 1)')" title="Brązowy"></div>
+								<div class="szary" (click)="wybierzKolor('rgba(108, 117, 125, 1)')" title="Szary"></div>
+								<div class="różowy" (click)="wybierzKolor('rgba(232, 62, 140, 1)')" title="Różowy"></div>
+								<div class="turkusowy" (click)="wybierzKolor('rgba(32, 201, 151, 1)')" title="Turkusowy"></div>
+								<div class="pomarańczowy" (click)="wybierzKolor('rgba(253, 126, 20, 1)')" title="Pomarańczowy"></div>
+							</div>
+
+							<div class="zawieraPalete">
+
+								<input class="paleta" type="color" #Paleta (change)="zmienKolorPaleta(Paleta.value)" value="#007bff" title="Kolor wybrany w palecie: {{this.zmienKolorPaleta(Paleta.value,2)}}">
+								<label class="etykietaPalety" (click)="Paleta.click()">Paleta kolorów</label>
+
+							</div>
+
+							<div class="modalZapisz6" [class.krawedzModala6]="this.krawedzModala6" *ngIf="this.pokazK && !this.pokazRo && !this.pokazF && !this.pokazLi && !this.pokazPro && !this.pokazKo
+				 && !this.pokazEl && !this.pokazTr" [style.top.px]="this.gora6" [style.left.px]="this.lewo6" (mousedown)="kliknij6($event)">
+
+								<div class="pasekTytulu">
+									<label class="zap6">Zmień kolor rgb</label>
+									<fa-icon *ngIf="this.najechanie6" [icon]="faTimes" (mouseover)="this.najechanie6=true" (mouseout)="this.najechanie6=!this.najechanie6" (click)="this.pokazK=!this.pokazK; this.gora6 = this.zwrocGora(); this.lewo6 = 205;
+								this.najechanie6=false; this.krawedzModala6=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie6" [icon]="faTimes" (mouseover)="this.najechanie6=true" (mouseout)="this.najechanie6=!this.najechanie6" (click)="this.pokazK=!this.pokazK;this.gora6 = this.zwrocGora(); this.lewo6 = 205;
+								this.najechanie6=false; this.krawedzModala6=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend6">Zmień kolor rgb</legend>
+									<div class="razem4">
+										<input [class.ukryte]="!this.pokazK" #definicjaKoloru class="rozmiar2 form-control" type="text" placeholder="r,g,b" title="trzy wartości z zakresu 0-255,np.: '25,50,50'" />
+									</div>
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazK" class="btn btn-success text-dark form-control cofnij5" value="Anuluj" (click)="this.pokazK=!this.pokazK;this.gora6 = this.zwrocGora(); this.lewo6 = 205;this.krawedzModala6=false;">
+									Anuluj
+								</button>
+								<button [class.ukryte]="!this.pokazK" class="btn btn-success text-dark form-control cofnij5" value="Zmień"
+												(click)="zmienKolor(definicjaKoloru.value)" title="Zmień Rozmiar/Bok funkcji">
+									Zmień
+								</button>
+							</div>
+
+							<label class="wysrodkuj">Kolory</label>
+							<label class="wsp pl-1 pr-1" (click)="czyWspolrzedne.checked=!czyWspolrzedne.checked">
+								<fa-icon [icon]="faSign" [styles]="{'width': '20px', 'height': '20px', 'color': '#343a40', 'margin': '0px', 'margin-left': '0px'}"
+												 title="Wpisz współrzędne"></fa-icon>&nbsp;Wpisz współrzędne
+							</label>
+
+							<input [class.zaznacz]="this.czyWpiszWspolrzedne == true" #czyWspolrzedne class="czyWspolrzedne form-control" type="checkbox" (click)="sprawdzCzyWpisacWspolrzedne()" title="Czy wpisz współrzędne" />
+
+							<label class="wsp pl-1 pr-1" (click)="czyObrys.checked=!czyObrys.checked">
+								<fa-icon [icon]="faSquare" [styles]="{'width': '20px', 'height': '20px', 'stroke': '#343a40', 'stroke-width':'100px', 'color': 'white', 'margin': '0px', 'margin-left': '0px'}"
+												 title="Tylko obrys figury"></fa-icon>&nbsp;Tylko obrys figury&nbsp;&nbsp;
+							</label>
+							<input #czyObrys class="czyWspolrzedne form-control" type="checkbox" (change)="sprawdzCzyTylkoObrysFigury(czyObrys.checked)" title="Czy tylko obrys figury" />
+
+							<label class="wsp pl-1 pr-1" (click)="czyKursorZawszeZwykly.checked=!czyKursorZawszeZwykly.checked; sprawdzCzyKursorZawszeZwykly()">
+								<fa-icon [icon]="faMousePointer" [styles]="{'width': '20px', 'height': '20px', 'color': '#343a40', 'margin': '0px', 'margin-left': '0px'}"
+												 title="Wpisz współrzędne"></fa-icon>&nbsp;Kursor tylko zwykły
+							</label>
+
+							<input [class.zaznacz]="this.czyKursorZawszeZwykly == true" #czyKursorZawszeZwykly class="czyWspolrzedne form-control" type="checkbox" (change)="sprawdzCzyKursorZawszeZwykly()" title="Czy kursor tylko zwykły" />
+
+
+							<label class="wysrodkuj">Decyzje</label>
+
+							<br>
+							
+							<fa-icon *ngIf="this.funkcja!='olowek'" [icon]="faPencilAlt" [styles]="{'width': '20px', 'height': '20px', 'color': 'yellow', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Ołówek" [spin]="this.funkcja=='olowek'" (click)="sprawdzPokazO();"></fa-icon>
+
+							<fa-icon width="10" height="10" *ngIf="this.funkcja=='olowek'" [icon]="faPencilAlt" [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Ołówek" [spin]="this.funkcja=='olowek'" (click)="sprawdzPokazO();"></fa-icon>
+
+
+
+							<fa-icon *ngIf="this.funkcja!='gumka'" [icon]="faEraser" [styles]="{'width': '20px', 'height': '20px', 'color': 'brown', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Gumka" [spin]="this.funkcja=='gumka'" (click)="sprawdzPokazG();">
+
+							</fa-icon>
+							<fa-icon *ngIf="this.funkcja=='gumka'" [icon]="faEraser" [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Gumka" [spin]="this.funkcja=='gumka'" (click)="sprawdzPokazG();">
+
+							</fa-icon>
+
+
+
+							<fa-icon *ngIf="this.funkcja!='linia'" [icon]="faMinus" [styles]="{'width': '20px', 'height': '20px', 'color': 'blue', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Linia" [spin]="this.funkcja=='linia'" (click)="sprawdzPokazLi();">
+
+							</fa-icon>
+							<fa-icon *ngIf="this.funkcja=='linia'" [icon]="faMinus" [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Linia" [spin]="this.funkcja=='linia'" (click)="sprawdzPokazLi();">
+
+							</fa-icon>
+
+							<div class="modalZapisz7" [class.krawedzModala7]="this.krawedzModala7" *ngIf="this.pokazLi && czyWspolrzedne.checked == true && this.funkcja=='linia'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazPro && !this.pokazKo && !this.pokazTr" [style.top.px]="this.gora7" [style.left.px]="this.lewo7">
+
+								<div class="pasekTytulu">
+									<label class="zap7" (mousedown)="kliknij7($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne linii</label>
+									<fa-icon *ngIf="this.najechanie7" [icon]="faTimes" (mouseover)="this.najechanie7=true" (mouseout)="this.najechanie7=!this.najechanie7" (click)="this.pokazLi=!this.pokazLi; this.gora7 = this.zwrocGora(); this.lewo7 = 205;
+								this.najechanie7=false; this.krawedzModala7=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie7" [icon]="faTimes" (mouseover)="this.najechanie7=true" (mouseout)="this.najechanie7=!this.najechanie7" (click)="this.pokazLi=!this.pokazLi;; this.gora7 = this.zwrocGora(); this.lewo7 = 205;
+								this.najechanie7=false; this.krawedzModala7=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend7">Współrzędne linii</legend>
+									<div class="razem5">
+										
+										<label class="rozmiar" [class.ukryte]="!this.pokazLi">początek: </label>
+										<input [class.ukryte]="!this.pokazLi" #liniaPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazLi" #liniaPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem5">
+										
+
+										<label class="rozmiar" [class.ukryte]="!this.pokazLi">koniec: </label>
+										<input [class.ukryte]="!this.pokazLi" #liniaKoniecX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazLi" #liniaKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazLi" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazLi=!this.pokazLi;; this.gora7 = this.zwrocGora(); this.lewo7 = 205;this.krawedzModala7=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazLi" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="liniaWspolrzedne(liniaPoczatekX.value ,liniaPoczatekY.value,liniaKoniecX.value,liniaKoniecY.value)" title="Zatwierdź współrzędne linii">
+									Ok
+								</button>
+							</div>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja!='prostokat'" [icon]="faSquareFull" [styles]="{'width': '20px', 'height': '20px', 'color': 'orange', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Prostokąt" [spin]="this.funkcja=='prostokat'" (click)="sprawdzPokazPro();">
+
+							</fa-icon>
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja=='prostokat'" [icon]="faSquareFull" [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Prostokąt" [spin]="this.funkcja=='prostokat'" (click)="sprawdzPokazPro();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja!='prostokat'" [icon]="faSquareFull"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'white', 'margin': '5px', 'margin-left': '5px', 'border': '1px solid orange'}"
+											 title="Prostokąt" [spin]="this.funkcja=='prostokat'" (click)="sprawdzPokazPro();">
+
+							</fa-icon>
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja=='prostokat'" [icon]="faSquare"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'white', 'margin': '5px', 'margin-left': '5px', 'border': '1px solid red'}"
+											 title="Prostokąt" [spin]="this.funkcja=='prostokat'" (click)="sprawdzPokazPro();">
+
+							</fa-icon>
+
+							<div class="modalZapisz8" [class.krawedzModala8]="this.krawedzModala8" *ngIf="this.pokazPro && czyWspolrzedne.checked == true && this.funkcja=='prostokat'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazKo && !this.pokazTr" [style.top.px]="this.gora8" [style.left.px]="this.lewo8">
+
+								<div class="pasekTytulu">
+									<label class="zap8" (mousedown)="kliknij8($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne prostokąta</label>
+									<fa-icon *ngIf="this.najechanie8" [icon]="faTimes" (mouseover)="this.najechanie8=true" (mouseout)="this.najechanie8=!this.najechanie8" (click)="this.pokazPro=!this.pokazPro; this.gora8 = this.zwrocGora(); this.lewo8 = 205;
+								this.najechanie8=false; this.krawedzModala8=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie8" [icon]="faTimes" (mouseover)="this.najechanie8=true" (mouseout)="this.najechanie8=!this.najechanie8" (click)="this.pokazPro=!this.pokazPro; this.gora8 = this.zwrocGora(); this.lewo8 = 205;
+								this.najechanie8=false; this.krawedzModala8=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend8">Współrzędne prostokąta</legend>
+									<div class="razem5">
+										
+										<label class="rozmiar" [class.ukryte]="!this.pokazPro">początek: </label>
+										<input [class.ukryte]="!this.pokazPro" #prostokatPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazPro" #prostokatPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem5">
+										
+										<label class="rozmiar" [class.ukryte]="!this.pokazPro">koniec: </label>
+										<input [class.ukryte]="!this.pokazPro" #prostokatKoniecX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazPro" #prostokatKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazPro" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazPro=!this.pokazPro; this.gora8 = this.zwrocGora(); this.lewo8 = 205;this.krawedzModala8=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazPro" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="prostokatWspolrzedne(prostokatPoczatekX.value ,prostokatPoczatekY.value,prostokatKoniecX.value,prostokatKoniecY.value)" title="Zatwierdź współrzędne prostokąta">
+									Ok
+								</button>
+							</div>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja!='kolo'" [icon]="faCircle"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'green', 'stroke-width':'100px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Koło" [spin]="this.funkcja=='kolo'" (click)="sprawdzPokazKo();">
+
+							</fa-icon>
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja=='kolo'" [icon]="faCircle"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'red', 'stroke-width':'100px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Koło" [spin]="this.funkcja=='kolo'" (click)="sprawdzPokazKo();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja!='kolo'" [icon]="faCircle" [styles]="{'width': '20px', 'height': '20px', 'color': 'green', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Koło" [spin]="this.funkcja=='kolo'" (click)="sprawdzPokazKo();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja=='kolo'" [icon]="faCircle"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Koło" [spin]="this.funkcja=='kolo'" (click)="sprawdzPokazKo();">
+
+							</fa-icon>
+
+							<div class="modalZapisz9" [class.krawedzModala9]="this.krawedzModala9" *ngIf="this.pokazKo && czyWspolrzedne.checked == true && this.funkcja=='kolo'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazTr" [style.top.px]="this.gora9" [style.left.px]="this.lewo9">
+
+								<div class="pasekTytulu">
+									<label class="zap9" (mousedown)="kliknij9($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne koła</label>
+									<fa-icon *ngIf="this.najechanie9" [icon]="faTimes" (mouseover)="this.najechanie9=true" (mouseout)="this.najechanie9=!this.najechanie9" (click)="this.pokazKo=!this.pokazKo; this.gora9 = this.zwrocGora(); this.lewo9 = 205;
+								this.najechanie9=false; this.krawedzModala9=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie9" [icon]="faTimes" (mouseover)="this.najechanie9=true" (mouseout)="this.najechanie9=!this.najechanie9" (click)="this.pokazKo=!this.pokazKo; this.gora9 = this.zwrocGora(); this.lewo9 = 205;
+								this.najechanie9=false; this.krawedzModala9=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend9">Współrzędne koła</legend>
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazKo">środek: </label>
+										<input [class.ukryte]="!this.pokazKo" #koloPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazKo" #koloPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazKo">koniecY: </label>
+										<input [class.ukryte]="!this.pokazKo" #koloKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+
+									</div>
+
+									<div class="razem6">
+
+										<label class="rozmiar3" [class.ukryte]="!this.pokazKo">stopnie od do: </label>
+										<input [class.ukryte]="!this.pokazKo" #koloStopnieOd class="rozmiarWsp2 form-control" type="text" placeholder="0-360" />
+										<input [class.ukryte]="!this.pokazKo" #koloStopnie class="rozmiarWsp2 form-control" type="text" placeholder="1-360" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazKo" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazKo=!this.pokazKo; this.gora9 = this.zwrocGora(); this.lewo9 = 205;this.krawedzModala9=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazKo" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="koloWspolrzedne(koloPoczatekX.value ,koloPoczatekY.value,koloKoniecY.value,'-1',koloStopnieOd.value,koloStopnie.value,-1)">
+									Ok
+								</button>
+							</div>
+
+							<div [class.elipsaRozowa]="czyObrys.checked!=true && !(this.funkcja=='elipsa')" [class.elipsaRozowaObwod]="czyObrys.checked==true && !(this.funkcja=='elipsa')"
+									 [class.elipsaCzerwona]="czyObrys.checked!=true && this.funkcja=='elipsa'" [class.elipsaCzerwonaObwod]="czyObrys.checked==true && this.funkcja=='elipsa'" title="Elipsa"
+									 (click)="sprawdzPokazEl();">
+
+							</div>
+
+							<div class="modalZapisz10" [class.krawedzModala10]="this.krawedzModala10" *ngIf="this.pokazEl && czyWspolrzedne.checked == true && this.funkcja=='elipsa'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazTr" [style.top.px]="this.gora10" [style.left.px]="this.lewo10">
+
+								<div class="pasekTytulu">
+									<label class="zap10" (mousedown)="kliknij10($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne elipsy</label>
+									<fa-icon *ngIf="this.najechanie10" [icon]="faTimes" (mouseover)="this.najechanie10=true" (mouseout)="this.najechanie10=!this.najechanie10" (click)="this.pokazEl=!this.pokazEl; this.gora10 = this.zwrocGora(); this.lewo10 = 205;
+								this.najechanie10=false; this.krawedzModala10=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie10" [icon]="faTimes" (mouseover)="this.najechanie10=true" (mouseout)="this.najechanie10=!this.najechanie10" (click)="this.pokazEl=!this.pokazEl; this.gora10 = this.zwrocGora(); this.lewo10 = 205;
+								this.najechanie10=false; this.krawedzModala10=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend10">Współrzędne elipsy</legend>
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazEl">środek: </label>
+										<input [class.ukryte]="!this.pokazEl" #koloPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazEl" #koloPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazEl">koniecY: </label>
+										<input [class.ukryte]="!this.pokazEl" #koloKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazEl">koniecX: </label>
+										<input [class.ukryte]="!this.pokazEl" #koloKoniecX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+
+
+									</div>
+
+									<div class="razem6">
+
+										<label class="rozmiar3" [class.ukryte]="!this.pokazEl">stopnie od do: </label>
+										<input [class.ukryte]="!this.pokazEl" #koloStopnieOd class="rozmiarWsp2 form-control" type="text" placeholder="0-360" />
+										<input [class.ukryte]="!this.pokazEl" #koloStopnie class="rozmiarWsp2 form-control" type="text" placeholder="1-360" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazEl" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazEl=!this.pokazEl; this.gora10 = this.zwrocGora(); this.lewo10 = 205;this.krawedzModala10=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazEl" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="koloWspolrzedne(koloPoczatekX.value ,koloPoczatekY.value,koloKoniecY.value,koloKoniecX.value ? koloKoniecX.value : '-1',koloStopnieOd.value,koloStopnie.value,koloKoniecX)">
+									Ok
+								</button>
+							</div>
+
+							<br [class.ukryte]="this.czyUkryte || this.zwrocFunkcja()!='trojkat'">
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja!='trojkat'" [icon]="faPlay"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'black', 'stroke-width':'100px', 'color': 'white', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Trójkat" [spin]="this.funkcja=='trojkat'" (click)="sprawdzPokazTr();">
+
+							</fa-icon>
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja=='trojkat'" [icon]="faPlay"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'red', 'stroke-width':'100px', 'color': 'white', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Trójkat" [spin]="this.funkcja=='trojkat'" (click)="sprawdzPokazTr();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja!='trojkat'" [icon]="faPlay" [styles]="{'width': '20px', 'height': '20px', 'color': 'black', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Trójkat" [spin]="this.funkcja=='trojkat'" (click)="sprawdzPokazTr();">
+
+							</fa-icon>
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja=='trojkat'" [icon]="faPlay" [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Trójkat" [spin]="this.funkcja=='trojkat'" (click)="sprawdzPokazTr();">
+
+							</fa-icon>
+
+							<div class="modalZapisz11" [class.krawedzModala11]="this.krawedzModala11" *ngIf="this.pokazTr && czyWspolrzedne.checked == true && this.funkcja=='trojkat'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazEl" [style.top.px]="this.gora11"
+									 [style.left.px]="this.lewo11">
+
+								<div class="pasekTytulu">
+									<label class="zap11" (mousedown)="kliknij11($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne trójkąta</label>
+									<fa-icon *ngIf="this.najechanie11" [icon]="faTimes" (mouseover)="this.najechanie11=true" (mouseout)="this.najechanie11=!this.najechanie11" (click)="this.pokazTr=!this.pokazTr; this.gora11 = this.zwrocGora(); this.lewo11 = 205;
+								this.najechanie11=false; this.krawedzModala11=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie11" [icon]="faTimes" (mouseover)="this.najechanie11=true" (mouseout)="this.najechanie11=!this.najechanie11" (click)="this.pokazTr=!this.pokazTr; this.gora11 = this.zwrocGora(); this.lewo11 = 205;
+								this.najechanie11=false; this.krawedzModala11=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend11">Współrzędne trójkąta</legend>
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazTr">początek: </label>
+										<input [class.ukryte]="!this.pokazTr" #trojkatPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazTr" #trojkatPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazTr">drugi: </label>
+										<input [class.ukryte]="!this.pokazTr" #trojkat2X class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazTr" #trojkat2Y class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazTr">koniec: </label>
+										<input [class.ukryte]="!this.pokazTr" #trojkatKoniecX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazTr" #trojkatKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazTr" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazTr=!this.pokazTr; this.gora11 = this.zwrocGora(); this.lewo11 = 205;this.krawedzModala11=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazTr" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="trojkatWspolrzedne(trojkatPoczatekX.value,trojkatPoczatekY.value,trojkat2X.value,trojkat2Y.value,trojkatKoniecX.value,trojkatKoniecY.value)">
+									Ok
+								</button>
+							</div>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja!='kwadratowaKrzywaBeziera'" [icon]="faBezierCurve"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'purple', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Kwadratowa Krzywa Beziera" [spin]="this.funkcja=='kwadratowaKrzywaBeziera'" (click)="sprawdzPokazKKB();">
+
+							</fa-icon>
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja=='kwadratowaKrzywaBeziera'" [icon]="faBezierCurve"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'red', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Kwadratowa Krzywa Beziera" [spin]="this.funkcja=='kwadratowaKrzywaBeziera'" (click)="sprawdzPokazKKB();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja!='kwadratowaKrzywaBeziera'" [icon]="faBezierCurve"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'purple', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Kwadratowa Krzywa Beziera" [spin]="this.funkcja=='kwadratowaKrzywaBeziera'" (click)="sprawdzPokazKKB();">
+
+							</fa-icon>
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja=='kwadratowaKrzywaBeziera'" [icon]="faBezierCurve"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Kwadratowa Krzywa Beziera" [spin]="this.funkcja=='kwadratowaKrzywaBeziera'" (click)="sprawdzPokazKKB();">
+
+							</fa-icon>
+
+							<div class="modalZapisz12" [class.krawedzModala12]="this.krawedzModala12" *ngIf="this.pokazKKB && czyWspolrzedne.checked == true && this.funkcja=='kwadratowaKrzywaBeziera'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazEl && !this.pokazTr" [style.top.px]="this.gora12"
+									 [style.left.px]="this.lewo12">
+
+								<div class="pasekTytulu">
+									<label class="zap12" (mousedown)="kliknij12($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne Kwadratowej Krzywej Beziera</label>
+									<fa-icon *ngIf="this.najechanie12" [icon]="faTimes" (mouseover)="this.najechanie12=true" (mouseout)="this.najechanie12=!this.najechanie12" (click)="this.pokazKKB=!this.pokazKKB; this.gora12 = this.zwrocGora(); this.lewo12 = 205;
+								this.najechanie12=false; this.krawedzModala12=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie12" [icon]="faTimes" (mouseover)="this.najechanie12=true" (mouseout)="this.najechanie12=!this.najechanie12" (click)="this.pokazKKB=!this.pokazKKB; this.gora12 = this.zwrocGora(); this.lewo12 = 205;
+								this.najechanie12=false; this.krawedzModala12=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend12">Współrzędne Kwadratowej Krzywej Beziera</legend>
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazKKB">początek: </label>
+										<input [class.ukryte]="!this.pokazKKB" #kwadrKBezieraPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazKKB" #kwadrKBezieraPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazKKB">drugi: </label>
+										<input [class.ukryte]="!this.pokazKKB" #kwadrKBeziera2X class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazKKB" #kwadrKBeziera2Y class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazKKB">koniec: </label>
+										<input [class.ukryte]="!this.pokazKKB" #kwadrKBezieraKoniecX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazKKB" #kwadrKBezieraKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazKKB" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazKKB=!this.pokazKKB; this.gora12 = this.zwrocGora(); this.lewo12 = 205;this.krawedzModala12=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazKKB" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="kwadrKBezieraWspolrzedne(kwadrKBezieraPoczatekX.value,kwadrKBezieraPoczatekY.value,kwadrKBeziera2X.value,kwadrKBeziera2Y.value,kwadrKBezieraKoniecX.value,kwadrKBezieraKoniecY.value)">
+									Ok
+								</button>
+							</div>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja!='szesciennaKrzywaBeziera'" [icon]="faBezierCurve" transform="rotate-90"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'silver', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Sześcienna Krzywa Beziera" [spin]="this.funkcja=='szesciennaKrzywaBeziera'" (click)="sprawdzPokazSKB();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja=='szesciennaKrzywaBeziera'" [icon]="faBezierCurve"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'red', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Sześcienna Krzywa Beziera" [spin]="this.funkcja=='szesciennaKrzywaBeziera'" (click)="sprawdzPokazSKB();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja!='szesciennaKrzywaBeziera'" [icon]="faBezierCurve" transform="rotate-90"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'silver', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Sześcienna Krzywa Beziera" [spin]="this.funkcja=='szesciennaKrzywaBeziera'" (click)="sprawdzPokazSKB();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja=='szesciennaKrzywaBeziera'" [icon]="faBezierCurve"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Sześcienna Krzywa Beziera" [spin]="this.funkcja=='szesciennaKrzywaBeziera'" (click)="sprawdzPokazSKB();">
+
+							</fa-icon>
+
+							<div class="modalZapisz13" [class.krawedzModala13]="this.krawedzModala13" *ngIf="this.pokazSKB && czyWspolrzedne.checked == true && this.funkcja=='szesciennaKrzywaBeziera'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazEl && !this.pokazTr && !this.pokazKKB"
+									 [style.top.px]="this.gora13" [style.left.px]="this.lewo13">
+
+								<div class="pasekTytulu">
+									<label class="zap13" (mousedown)="kliknij13($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne Sześciennej Krzywej Beziera</label>
+									<fa-icon *ngIf="this.najechanie13" [icon]="faTimes" (mouseover)="this.najechanie13=true" (mouseout)="this.najechanie13=!this.najechanie13" (click)="this.pokazSKB=!this.pokazSKB; this.gora13 = this.zwrocGora(); this.lewo13 = 205;
+								this.najechanie13=false; this.krawedzModala13=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie13" [icon]="faTimes" (mouseover)="this.najechanie13=true" (mouseout)="this.najechanie13=!this.najechanie13" (click)="this.pokazSKB=!this.pokazSKB; this.gora13 = this.zwrocGora(); this.lewo13 = 205;
+								this.najechanie13=false; this.krawedzModala13=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend13">Współrzędne Sześciennej Krzywej Beziera</legend>
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazSKB">początek: </label>
+										<input [class.ukryte]="!this.pokazSKB" #szKBezieraPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazSKB" #szKBezieraPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazSKB">drugi: </label>
+										<input [class.ukryte]="!this.pokazSKB" #szKBeziera2X class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazSKB" #szKBeziera2Y class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazSKB">trzeci: </label>
+										<input [class.ukryte]="!this.pokazSKB" #szKBeziera3X class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazSKB" #szKBeziera3Y class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazSKB">koniec: </label>
+										<input [class.ukryte]="!this.pokazSKB" #szKBezieraKoniecX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazSKB" #szKBezieraKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazSKB" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazSKB=!this.pokazSKB; this.gora13 = this.zwrocGora(); this.lewo13 = 205;this.krawedzModala13=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazSKB" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="szesciennaKrzywaBezieraWspolrzedne(szKBezieraPoczatekX.value,szKBezieraPoczatekY.value,szKBeziera2X.value,szKBeziera2Y.value,szKBeziera3X.value,szKBeziera3Y.value,
+									szKBezieraKoniecX.value,szKBezieraKoniecY.value)">
+									Ok
+								</button>
+							</div>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja!='wielokat'" [icon]="faDrawPolygon"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'yellow', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Wielokąt" [spin]="this.funkcja=='wielokat'" (click)="sprawdzPokazWie();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja=='wielokat'" [icon]="faDrawPolygon"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'red', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Wielokąt" [spin]="this.funkcja=='wielokat'" (click)="sprawdzPokazWie();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja!='wielokat'" [icon]="faDrawPolygon"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'yellow', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Wielokąt" [spin]="this.funkcja=='wielokat'" (click)="sprawdzPokazWie();">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja=='wielokat'" [icon]="faDrawPolygon"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Wielokąt" [spin]="this.funkcja=='wielokat'" (click)="sprawdzPokazWie();">
+
+							</fa-icon>
+
+							<div class="modalZapisz14" [class.krawedzModala14]="this.krawedzModala14" *ngIf="this.pokazWie && czyWspolrzedne.checked == true && this.funkcja=='wielokat'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazEl && !this.pokazTr && !this.pokazKKB && !this.pokazSKB"
+									 [style.top.px]="this.gora14" [style.left.px]="this.lewo14">
+
+								<div class="pasekTytulu">
+									<label class="zap14" (mousedown)="kliknij14($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne wielokąta</label>
+									<fa-icon *ngIf="this.najechanie14" [icon]="faTimes" (mouseover)="this.najechanie14=true" (mouseout)="this.najechanie14=!this.najechanie14" (click)="this.pokazWie=!this.pokazWie; this.gora14 = this.zwrocGora(); this.lewo14 = 205;
+								this.najechanie14=false; this.krawedzModala14=false; anulujLinie(); this.X.splice(0); this.Y.splice(0);"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+									<fa-icon *ngIf="!this.najechanie14" [icon]="faTimes" (mouseover)="this.najechanie14=true" (mouseout)="this.najechanie14=!this.najechanie14" (click)="this.pokazWie=!this.pokazWie; this.gora14 = this.zwrocGora(); this.lewo14 = 205;
+								this.najechanie14=false; this.krawedzModala14=false; anulujLinie(); this.X.splice(0); this.Y.splice(0);"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+								</div>
+								<fieldset>
+									<legend class="legend14">Współrzędne wielokąta</legend>
+
+									<div class="razem10">
+										
+										<label class="rozmiar7" [class.ukryte]="!this.pokazWie">początkowy/ostatni punkt: </label>
+										<label class="rozmiar3" [class.ukryte]="!this.pokazWie">x(px): {{this.X[0]}}</label>
+										<label class="rozmiar3" [class.ukryte]="!this.pokazWie">y(px): {{this.Y[0]}}</label>
+
+									</div>
+
+									<div class="razem10">
+										
+										<label class="rozmiar7" [class.ukryte]="!this.pokazWie">kolejny punkt: </label>
+										<input [class.ukryte]="!this.pokazWie" #wielokatX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazWie" #wielokatY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+										<input #czyWielokatTolerancja class="czyWspolrzedne3 form-control srodeczek szuk1" type="checkbox" (click)="sprawdzCzyWielokatTolerancja()"
+													 title="Czy tolerancja punktu początkowego i końcowego(analogiczne x i y mogą się różnić o łącznie 5px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazWie" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazWie=!this.pokazWie; this.gora14 = this.zwrocGora(); this.lewo14 = 205;this.krawedzModala14=false;
+							  anulujLinie(); this.X.splice(0); this.Y.splice(0);">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazWie" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="wielokatWspolrzedne(wielokatX.value ? wielokatX.value : -1 ,wielokatY.value ? wielokatY.value : -1,wielokatX,wielokatY)">
+									Ok
+								</button>
+							</div>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja!='probnik'" [icon]="faVial"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'brown', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Próbnik" [spin]="this.funkcja=='probnik'" (click)="sprawdzPokazProb()">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja=='probnik'" [icon]="faVial"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'red', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Próbnik" [spin]="this.funkcja=='probnik'" (click)="sprawdzPokazProb()">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja!='probnik'" [icon]="faVial"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'brown', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Próbnik" [spin]="this.funkcja=='probnik'" (click)="sprawdzPokazProb()">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja=='probnik'" [icon]="faVial"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Próbnik" [spin]="this.funkcja=='probnik'" (click)="sprawdzPokazProb()">
+
+							</fa-icon>
+
+							<div class="modalZapisz15" [class.krawedzModala15]="this.krawedzModala15" *ngIf="this.pokazProb && czyWspolrzedne.checked == true && this.funkcja=='probnik'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazEl && !this.pokazTr && !this.pokazKKB && !this.pokazSKB
+				&& !this.pokazWie"
+									 [style.top.px]="this.gora15" [style.left.px]="this.lewo15">
+
+								<div class="pasekTytulu">
+									<label class="zap15" (mousedown)="kliknij15($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne próbnika</label>
+
+									<fa-icon *ngIf="this.najechanie15" [icon]="faTimes" (mouseover)="this.najechanie15=true" (mouseout)="this.najechanie15=!this.najechanie15" (click)="this.pokazProb=!this.pokazProb; this.gora15 = this.zwrocGora(); this.lewo15 = 205;
+								this.najechanie15=false; this.krawedzModala15=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+									<fa-icon *ngIf="!this.najechanie15" [icon]="faTimes" (mouseover)="this.najechanie15=true" (mouseout)="this.najechanie15=!this.najechanie15" (click)="this.pokazProb=!this.pokazProb; this.gora15 = this.zwrocGora(); this.lewo15 = 205;
+								this.najechanie15=false; this.krawedzModala15=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+								</div>
+								<fieldset>
+									<legend class="legend15">Współrzędne próbnika</legend>
+									<div class="razem6">
+										
+										<label class="rozmiar3" [class.ukryte]="!this.pokazProb">punkt: </label>
+										<input [class.ukryte]="!this.pokazProb" #probnikX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazProb" #probnikY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazProb" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazProb=!this.pokazProb; this.gora15 = this.zwrocGora(); this.lewo15 = 205;this.krawedzModala15=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazProb" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="probnikWspolrzedne(probnikX.value,probnikY.value)">
+									Ok
+								</button>
+							</div>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja!='tekst'" [icon]="faFont"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'blue', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Tekst" [spin]="this.funkcja=='tekst'" (click)="sprawdzPokazTe()">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja=='tekst'" [icon]="faFont"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'red', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Tekst" [spin]="this.funkcja=='tekst'" (click)="sprawdzPokazTe()">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja!='tekst'" [icon]="faFont"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'blue', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Tekst" [spin]="this.funkcja=='tekst'" (click)="sprawdzPokazTe()">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja=='tekst'" [icon]="faFont"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Tekst" [spin]="this.funkcja=='tekst'" (click)="sprawdzPokazTe()">
+
+							</fa-icon>
+
+							<div class="modalZapisz16" [class.krawedzModala16]="this.krawedzModala16" *ngIf="this.pokazTe && czyWspolrzedne.checked == true && this.funkcja=='tekst'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazEl && !this.pokazTr && !this.pokazKKB && !this.pokazSKB
+				&& !this.pokazWie && !this.pokazProb"
+									 [style.top.px]="this.gora16" [style.left.px]="this.lewo16">
+
+								<div class="pasekTytulu">
+									<label class="zap16" (mousedown)="kliknij16($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne tekstu</label>
+
+									<fa-icon *ngIf="this.najechanie16" [icon]="faTimes" (mouseover)="this.najechanie16=true" (mouseout)="this.najechanie16=!this.najechanie16" (click)="this.pokazTe=!this.pokazTe; this.gora16 = this.zwrocGora(); this.lewo16 = 205;
+								this.najechanie16=false; this.krawedzModala16=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+									<fa-icon *ngIf="!this.najechanie16" [icon]="faTimes" (mouseover)="this.najechanie16=true" (mouseout)="this.najechanie16=!this.najechanie16" (click)="this.pokazTe=!this.pokazTe; this.gora16 = this.zwrocGora(); this.lewo16 = 205;
+								this.najechanie16=false; this.krawedzModala16=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+								</div>
+								<fieldset>
+									<legend class="legend16">Współrzędne tekstu</legend>
+
+									<div class="razem6">
+
+										<input [class.ukryte]="!this.pokazTe" #zawartoscTekstu class="tekst form-control" type="text" placeholder="treść tekstu" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar4" [class.ukryte]="!this.pokazTe">górny lewy róg: </label>
+										<input [class.ukryte]="!this.pokazTe" #tekstPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazTe" #tekstPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem6">
+										
+										<label class="rozmiar4" [class.ukryte]="!this.pokazTe">dolny lewy róg: </label>
+										<input [class.ukryte]="!this.pokazTe" #tekstKoniecX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazTe" #tekstKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazTe" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazTe=!this.pokazTe;this.gora16 = this.zwrocGora(); this.lewo16 = 205;this.krawedzModala16=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazTe" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="zatwierdzTekst(zawartoscTekstu.value); tekstWspolrzedne(tekstPoczatekX.value ,tekstPoczatekY.value,tekstKoniecX.value,tekstKoniecY.value)">
+									Ok
+								</button>
+							</div>
+
+							<br>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja!='wypelnienie' && this.lupa=='normalny'" [icon]="faFill"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'green', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Wypełnienie" [spin]="this.funkcja=='wypelnienie'" (click)="sprawdzPokazWyp()">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked!=true" *ngIf="this.funkcja=='wypelnienie' && this.lupa=='normalny'" [icon]="faFill"
+											 [styles]="{'width': '20px', 'height': '20px', 'stroke': 'red', 'stroke-width':'40px', 'color': 'white', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Wypełnienie" [spin]="this.funkcja=='wypelnienie'" (click)="sprawdzPokazWyp()">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja!='wypelnienie' && this.lupa=='normalny'" [icon]="faFill"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'green', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Wypełnienie" [spin]="this.funkcja=='wypelnienie'" (click)="sprawdzPokazWyp()">
+
+							</fa-icon>
+
+							<fa-icon [class.ukryte]="czyObrys.checked==true" *ngIf="this.funkcja=='wypelnienie' && this.lupa=='normalny'" [icon]="faFill"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Wypełnienie" [spin]="this.funkcja=='wypelnienie'" (click)="sprawdzPokazWyp()">
+
+							</fa-icon>
+
+							<div [class.modalZapisz17]="czyWypelnienieTolerancja.checked==true && this.lupa=='normalny'" [class.modalZapisz17b]="!(czyWypelnienieTolerancja.checked==true) && this.lupa=='normalny'"
+									 [class.krawedzModala17]="this.krawedzModala17" *ngIf="this.pokazWyp && czyWspolrzedne.checked == true && this.funkcja=='wypelnienie' && !this.pokazRo && !this.pokazF
+				&& !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazEl && !this.pokazTr && !this.pokazKKB && !this.pokazSKB && !this.pokazWie && !this.pokazProb
+				&& !this.pokazTe" [style.top.px]="this.gora17" [style.left.px]="this.lewo17">
+
+								<div class="pasekTytulu">
+									<label class="zap17" (mousedown)="kliknij17($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne wypełnienia</label>
+
+									<fa-icon *ngIf="this.najechanie17" [icon]="faTimes" (mouseover)="this.najechanie17=true" (mouseout)="this.najechanie17=!this.najechanie17" (click)="this.pokazWyp=!this.pokazWyp; this.gora17 = this.zwrocGora(); this.lewo17 = 205;
+								this.najechanie17=false; this.krawedzModala17=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+									<fa-icon *ngIf="!this.najechanie17" [icon]="faTimes" (mouseover)="this.najechanie17=true" (mouseout)="this.najechanie17=!this.najechanie17" (click)="this.pokazWyp=!this.pokazWyp; this.gora17 = this.zwrocGora(); this.lewo17 = 205;
+								this.najechanie17=false; this.krawedzModala17=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+								</div>
+								<fieldset>
+									<legend class="legend17">Współrzędne wypełnienia</legend>
+
+									<div class="razem6">
+
+										<label class="rozmiar5 " [class.ukryte]="!this.pokazWyp" (click)="czyWypelnienieTolerancja.checked=!czyWypelnienieTolerancja.checked">Czy tolerancja wypełnienia</label>
+										<input [class.ukryte]="!this.pokazWyp" #czyWypelnienieTolerancja class="czyWspolrzedne0 form-control srodeczek tolerancjaWyp" type="checkbox" (change)="sprawdzCzyWypelnienieTolerancja(czyWypelnienieTolerancja.checked)"
+													 title="Czy tolerancja wypełnienia" />
+
+
+									</div>
+
+									<div class="razem6">
+
+										<label class="rozmiar5" [class.ukryte]="!this.pokazWyp" (click)="czyWypelnienieJedenPion.checked=!czyWypelnienieJedenPion.checked">Czy jeden pion,specyficzne,szybsze</label>
+										<input [class.ukryte]="!this.pokazWyp" #czyWypelnienieJedenPion class="czyWspolrzedne0 form-control srodeczek wypelnienieJedenPion" type="checkbox" (change)="sprawdzCzyWypelnienieJedenPion(czyWypelnienieJedenPion.checked)"
+													 title="Czy jeden pion(nie w stylu płotu),specyficzne, szybsze" />
+
+
+									</div>
+
+									<div class="razem6" [class.ukryte]="!czyWypelnienieTolerancja.checked==true">
+
+										<label class="rozmiar4" [class.ukryte]="!this.pokazWyp">tolerancja:</label>
+										<input #tolerancja class="rozmiarWsp2 form-control" type="text" [class.ukryte]="!czyWypelnienieTolerancja.checked" placeholder="0-255" />
+
+									</div>
+
+									<div class="razem6">
+
+										<label class="rozmiar4" [class.ukryte]="!this.pokazWyp">punkt: </label>
+										<input [class.ukryte]="!this.pokazWyp" #wypelnienieX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazWyp" #wypelnienieY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazWyp" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazWyp=!this.pokazWyp; this.gora17 = this.zwrocGora(); this.lewo17 = 205;this.krawedzModala17=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazWyp" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="zmienTolerancja(tolerancja.value); wypelnienieWspolrzedne(wypelnienieX.value,wypelnienieY.value)">
+									Ok
+								</button>
+							</div>
+
+							<label class="wysrodkuj">Narzędzia Główne</label>
+
+							<fa-icon *ngIf="this.lupa!='powieksz'" [icon]="faPlusCircle"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'silver', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Powiększ" (click)="sprawdzPokazPow();">
+
+							</fa-icon>
+							<fa-icon *ngIf="this.lupa=='powieksz'" [icon]="faPlusCircle"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Powiększ" (click)="sprawdzPokazPow();">
+
+							</fa-icon>
+
+							<fa-icon *ngIf="this.lupa!='zmniejsz'" [icon]="faMinusCircle"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'silver', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Zmniejsz" (click)="sprawdzPokazZmn();">
+
+							</fa-icon>
+							<fa-icon *ngIf="this.lupa=='zmniejsz'" [icon]="faMinusCircle"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Zmniejsz" (click)="sprawdzPokazZmn();">
+
+							</fa-icon>
+
+							<fa-icon *ngIf="this.lupa!='normalny'" [icon]="faCircle"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'white', 'stroke':'silver','stroke-width':'40px', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Normalny" (click)="sprawdzPokazNor();">
+
+							</fa-icon>
+							<fa-icon *ngIf="this.lupa=='normalny'" [icon]="faCircle"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'white', 'stroke':'red','stroke-width':'40px', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Normalny" (click)="sprawdzPokazNor();">
+
+							</fa-icon>
+
+							<label class="wysrodkuj">Lupa</label>
+
+							<fa-icon *ngIf="this.funkcja!='obrotLewo'" [icon]="faChevronLeft"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'purple', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Obrót W Lewo" (click)="sprawdzPokazObrL();">
+
+							</fa-icon>
+							<fa-icon *ngIf="this.funkcja=='obrotLewo'" [icon]="faChevronLeft"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Obrót W Lewo" (click)="sprawdzPokazObrL();">
+
+							</fa-icon>
+
+							<fa-icon *ngIf="this.funkcja!='obrotPrawo'" [icon]="faChevronRight"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'purple', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Obrót W Prawo" (click)="sprawdzPokazObrP();">
+
+							</fa-icon>
+							<fa-icon *ngIf="this.funkcja=='obrotPrawo'" [icon]="faChevronRight"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Obrót W Prawo" (click)="sprawdzPokazObrP();">
+
+							</fa-icon>
+
+
+							<fa-icon *ngIf="this.funkcja!='odbicieWPionie'" [icon]="faAngleDoubleRight"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'black', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Odbicie W Pionie" (click)="sprawdzPokazOdbPi();">
+
+							</fa-icon>
+
+							<fa-icon *ngIf="this.funkcja=='odbicieWPionie'" [icon]="faAngleDoubleRight"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Odbicie W Pionie" (click)="sprawdzPokazOdbPi();">
+							</fa-icon>
+
+							<fa-icon *ngIf="this.funkcja!='odbicieWPoziomie'" [icon]="faAngleDoubleDown"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'black', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Odbicie W Poziomie" (click)="sprawdzPokazOdbPo()">
+
+							</fa-icon>
+							<fa-icon *ngIf="this.funkcja=='odbicieWPoziomie'" [icon]="faAngleDoubleDown"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Odbicie W Poziomie" (click)="sprawdzPokazOdbPo()">
+							</fa-icon>
+
+							<label class="wysrodkuj">Obroty i odbicia</label>
+
+							<fa-icon *ngIf="this.funkcja!='kopiuj'" [icon]="faCopy"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'orange', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Kopiuj Prostokąt" (click)="sprawdzPokazKop();">
+
+							</fa-icon>
+
+							<fa-icon *ngIf="this.funkcja=='kopiuj'" [icon]="faCopy" [spin]="this.funkcja=='kopiuj'"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '15px'}"
+											 title="Kopiuj Prostokąt" (click)="sprawdzPokazKop();">
+							</fa-icon>
+
+							<div class="modalZapisz18" [class.krawedzModala18]="this.krawedzModala18" *ngIf="this.pokazKop && czyWspolrzedne.checked == true && this.funkcja=='kopiuj'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazEl && !this.pokazTr && !this.pokazKKB && !this.pokazSKB
+				&& !this.pokazWie && !this.pokazProb && !this.pokazTe"
+									 [style.top.px]="this.gora18" [style.left.px]="this.lewo18">
+
+								<div class="pasekTytulu">
+									<label class="zap18" (mousedown)="kliknij18($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne kopiowania prostokąta</label>
+
+									<fa-icon *ngIf="this.najechanie18" [icon]="faTimes" (mouseover)="this.najechanie18=true" (mouseout)="this.najechanie18=!this.najechanie18" (click)="this.pokazKop=!this.pokazKop; this.gora18 = this.zwrocGora(); this.lewo18 = 205;
+								this.najechanie18=false; this.krawedzModala18=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+									<fa-icon *ngIf="!this.najechanie18" [icon]="faTimes" (mouseover)="this.najechanie18=true" (mouseout)="this.najechanie18=!this.najechanie18" (click)="this.pokazKop=!this.pokazKop; this.gora18 = this.zwrocGora(); this.lewo18 = 205;
+								this.najechanie18=false; this.krawedzModala18=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+								</div>
+								<fieldset>
+									<legend class="legend18">Współrzędne kopiowania prostokąta</legend>
+
+									<div class="razem8">
+
+										<label class="rozmiar6" [class.ukryte]="!this.pokazKop">z, górny lewy róg: </label>
+										<input [class.ukryte]="!this.pokazKop" #kopiujPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazKop" #kopiujPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem8">
+										
+										<label class="rozmiar6" [class.ukryte]="!this.pokazKop">z, dolny prawy róg: </label>
+										<input [class.ukryte]="!this.pokazKop" #kopiujKoniecX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazKop" #kopiujKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem8">
+										
+										<label class="rozmiar6" [class.ukryte]="!this.pokazKop">do, górny lewy róg: </label>
+										<input [class.ukryte]="!this.pokazKop" #kopiujDoPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazKop" #kopiujDoPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazKop" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazKop=!this.pokazKop; this.gora18 = this.zwrocGora(); this.lewo18 = 205;this.krawedzModala18=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazKop" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="kopiujWspolrzedne(kopiujPoczatekX.value ,kopiujPoczatekY.value,kopiujKoniecX.value,kopiujKoniecY.value,kopiujDoPoczatekX.value,kopiujDoPoczatekY.value)">
+									Ok
+								</button>
+							</div>
+
+							<fa-icon *ngIf="this.funkcja!='wytnij'" [icon]="faCut"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'orange', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Wytnij Prostokąt" (click)="sprawdzPokazWyt();">
+
+							</fa-icon>
+
+							<fa-icon *ngIf="this.funkcja=='wytnij'" [icon]="faCut" [spin]="this.funkcja=='wytnij'"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'red', 'margin': '5px', 'margin-left': '5px'}"
+											 title="Wytnij Prostokąt" (click)="sprawdzPokazWyt();">
+
+							</fa-icon>
+
+							<div class="modalZapisz19" [class.krawedzModala19]="this.krawedzModala19" *ngIf="this.pokazWyt && czyWspolrzedne.checked == true && this.funkcja=='wytnij'
+				&& !this.pokazRo && !this.pokazF && !this.pokazK && !this.pokazLi && !this.pokazPro && !this.pokazKo && !this.pokazEl && !this.pokazTr && !this.pokazKKB && !this.pokazSKB
+				&& !this.pokazWie && !this.pokazProb && !this.pokazTe && !this.pokazKop"
+									 [style.top.px]="this.gora19" [style.left.px]="this.lewo19">
+
+								<div class="pasekTytulu">
+									<label class="zap19" (mousedown)="kliknij19($event)">&nbsp;&nbsp;&nbsp;&nbsp;Współrzędne wycinania prostokąta</label>
+
+									<fa-icon *ngIf="this.najechanie19" [icon]="faTimes" (mouseover)="this.najechanie19=true" (mouseout)="this.najechanie19=!this.najechanie19" (click)="this.pokazWyt=!this.pokazWyt; this.gora19 = this.zwrocGora(); this.lewo19 = 205;
+								this.najechanie19=false; this.krawedzModala19=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'background-color':'red', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+									<fa-icon *ngIf="!this.najechanie19" [icon]="faTimes" (mouseover)="this.najechanie19=true" (mouseout)="this.najechanie19=!this.najechanie19" (click)="this.pokazWyt=!this.pokazWyt; this.gora19 = this.zwrocGora(); this.lewo19 = 205;
+								this.najechanie19=false; this.krawedzModala19=false;"
+													 [styles]="{'width': '30px', 'height': '30px', 'color': 'black', 'margin': '0px', 'padding':'7px', 'margin-left': '0px'}"
+													 title="Zamknij">
+									</fa-icon>
+
+								</div>
+								<fieldset>
+									<legend class="legend19">Współrzędne wycinania prostokąta</legend>
+
+									<div class="razem8">
+
+										<label class="rozmiar6" [class.ukryte]="!this.pokazWyt">z, górny lewy róg: </label>
+										<input [class.ukryte]="!this.pokazWyt" #kopiujPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazWyt" #kopiujPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem8">
+										
+										<label class="rozmiar6" [class.ukryte]="!this.pokazWyt">z, dolny prawy róg: </label>
+										<input [class.ukryte]="!this.pokazWyt" #kopiujKoniecX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazWyt" #kopiujKoniecY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+									<div class="razem8">
+										
+										<label class="rozmiar6" [class.ukryte]="!this.pokazWyt">do, górny lewy róg: </label>
+										<input [class.ukryte]="!this.pokazWyt" #kopiujDoPoczatekX class="rozmiarWsp2 form-control" type="text" placeholder="x(px)" />
+										<input [class.ukryte]="!this.pokazWyt" #kopiujDoPoczatekY class="rozmiarWsp2 form-control" type="text" placeholder="y(px)" />
+
+									</div>
+
+								</fieldset>
+
+								<button [class.ukryte]="!this.pokazWyt" class="btn btn-success text-dark form-control cofnij6" value="Anuluj" (click)="this.pokazWyt=!this.pokazWyt; this.gora19 = this.zwrocGora(); this.lewo19 = 205;this.krawedzModala19=false;">
+									Anuluj
+								</button>
+
+								<button [class.ukryte]="!this.pokazWyt" class="btn btn-success text-dark form-control cofnij6" value="Ok"
+												(click)="kopiujWspolrzedne(kopiujPoczatekX.value ,kopiujPoczatekY.value,kopiujKoniecX.value,kopiujKoniecY.value,kopiujDoPoczatekX.value,kopiujDoPoczatekY.value)">
+									Ok
+								</button>
+							</div>
+
+							<label class="wysrodkuj">Kopiuj lub wytnij</label>
+
+						</div>
+						
+						<div class="zewnetrzny">
+
+							<div class="radioFiltry">
+								<br>
+								<label class="wyrownaj3" (click)="sprawdzPokazFi()">
+									<fa-icon [icon]="faFilter"
+													 [styles]="{'width': '20px', 'height': '20px', 'color': 'black', 'margin': '0px', 'margin-right': '5px'}"
+													 title="Filtry">
+									</fa-icon><!--Filtry-->
+								</label>
+								<br>
+
+								<div class="wyrownaj40" [class.ukryte]="this.ukryteFiltry">
+
+									<div class="filtrOryginalny" (click)="this.filtrOryginalny();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Oryginalny"></div>
+									<div class="filtrSzarosci" (click)="this.filtrSzarosci();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Szarości"></div>
+									<div class="filtrOdwrocony" (click)="this.filtrOdwrocony();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Odwrócony"></div>
+									<div class="filtrSepia" (click)="this.filtrSepia();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Sepia"></div>
+									<div class="filtrCzerwony" (click)="this.filtrCzerwony();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Czerwony"></div>
+									<div class="filtrNiebieski" (click)="this.filtrNiebieski();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Niebieski"></div>
+									<div class="filtrZielony" (click)="this.filtrZielony();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Zielony"></div>
+									<div class="filtrZolty" (click)="this.filtrZolty();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Żółty"></div>
+									<div class="filtrPomaranczowy" (click)="this.filtrPomaranczowy();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Pomarańczowy"></div>
+									<div class="filtrFioletowy" (click)="this.filtrFioletowy();  rozjasnianieIle.value=''; przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Fioletowy"></div>
+									<br *ngIf="this.ktoryFiltr=='Rozjaśnianie'">
+									<div class="filtrRozjasnianie" (click)="this.filtrRozjasnianie(); przyciemnianieIle.value=''; przezrIle.value=''" title="Filtr Rozjaśnianie"></div>
+									<input type="text" #rozjasnianieIle class="rozmiarWsp22 form-control" [class.rozmiarWsp222]="this.ktoryFiltr!='Rozjaśnianie'" (change)="this.filtrRozjasnianie(rozjasnianieIle.value,true)" placeholder="0-255" />
+									<br *ngIf="this.ktoryFiltr=='Przyciemnianie'">
+									<div class="filtrPrzyciemnianie" (click)="this.filtrPrzyciemnianie();  rozjasnianieIle.value=''; przezrIle.value=''" title="Filtr Przyciemnianie"></div>
+									<input type="text" #przyciemnianieIle class="rozmiarWsp22 form-control" [class.rozmiarWsp222]="this.ktoryFiltr!='Przyciemnianie'" (change)="this.filtrPrzyciemnianie(przyciemnianieIle.value,true)" placeholder="0-255" />
+									<br *ngIf="this.ktoryFiltr=='Przezroczystość'">
+									<div class="filtrPrzezroczystosc" (click)="this.filtrPrzezroczystosc();  rozjasnianieIle.value=''; przyciemnianieIle.value=''" title="Filtr Przezroczystość"></div>
+									<input type="text" #przezrIle class="rozmiarWsp22 form-control" [class.rozmiarWsp222]="this.ktoryFiltr!='Przezroczystość'" (change)="this.filtrPrzezroczystosc(przezrIle.value,true)" placeholder="0-1" />
+									<br>
+									<label class="ktoryFiltr">Filtr {{this.ktoryFiltr}}</label>
+
+								</div>
+							</div>
+
+
+
+						</div>
+						<label class="wysrodkuj">Filtry</label>
+						<br>
+
+						<label class="wyrownaj" (click)="sprawdzPokazC()">
+							<fa-icon [class.ukryte]="!this.czyPoOryginalnym" [icon]="faUndo"
+											 [styles]="{'width': '20px', 'height': '20px', 'color': 'black', 'margin': '0px', 'margin-left': '5px'}"
+											 title="Cofnij lub Anuluj cofnij"></fa-icon> <!--Cofnij lub Anuluj cofnij-->
+						</label>
+						<br *ngIf="this.pokazC">
+
+						<div class="wyrownaj41" [class.ukryte]="!this.pokazC">
+
+							<button [class.ukryte]="!this.pokazC" class="btn btn-success text-dark form-control cofnij" value="cofnij" (click)="cofnij()" title="lub też użyj skrótu CTRL-Z">
+								Cofnij
+							</button>
+							<button [class.ukryte]="!this.pokazC" class="btn btn-success text-dark form-control anuluj" value="anuluj cofnij" (click)="anulujCofnij()" title="lub też użyj skrótu CTRL-Y">
+								Anuluj cofnij
+							</button>
+
+						</div>
+
+						<label [class.ukryte]="!this.czyPoOryginalnym" class="wysrodkuj">Cofanie</label>
+						
+					</div>
+					<div class="tab-panel" [class.aktywny]="this.numerKarty == 2" id="Widok">
+
+						<br>
+
+						<input #czyWspGrafiki class="czyWspolrzedne2 form-control mojMargines" type="checkbox" checked="checked" title="Współrzędne grafiki" />
+						<input #czyWspObszaruRoboczego class="czyWspolrzedne2 form-control" type="checkbox" checked="checked" title="Współrzędne robocze" />
+						<input #czyRozmiar class="czyWspolrzedne2 form-control" type="checkbox" checked="checked" title="Czy pokazać rozmiar" />
+
+						<label class="wysrodkuj">Ukrywanie</label>
+
+					</div>
+
+
+
+				</div>
+
+
+
+			</div>
+
+
+
+			<div class="przerwa bg-secondary" [style.width.px]="this.zwrocSzerokoscIWybor()"></div>
+			<div class="przerwaPionowa bg-secondary"></div>
+			
+			<canvas class="kartka bg-white" width="{{this.szerokosc}}" height="{{this.wysokosc}}" [style.width.px]="this.szerokosc" [style.height.px]="this.wysokosc"
+							(mousedown)="wywolajFunkcje($event)" (mouseup)="zakonczFunkcje($event)" (mousemove)="poruszaj($event)" (mouseout)="anulujLinie()">
+				Tresc zastepcza
+			</canvas>
+			<div class="rozszerz1 bg-white" *ngIf="this.lupa=='normalny'" [style.margin-top.px]="stringNaNumber(this.canvas.style.height.replace('px',''))/2-5" (mousedown)="dodajWPrawo(1,$event)"></div>
+			<div class="rozszerz2 bg-white" *ngIf="this.lupa=='normalny'" [style.margin-top.px]="stringNaNumber(this.canvas.style.height.replace('px',''))" [style.margin-left.px]="-10" (mousedown)="dodajWPrawo(1,$event,2)"></div>
+
+			<canvas [class.brakKursora]="this.zwrocWarunekKursora()" class="doKsztaltow" width="{{this.szerokosc2}}" height="{{this.wysokosc2}}" [style.width.px]="this.szerokosc*this.skalaRozmiaruX"
+							[style.height.px]="this.wysokosc*this.skalaRozmiaruY" (mousedown)="wywolajFunkcje($event)" (mouseup)="zakonczFunkcje($event)" (mousemove)="poruszaj($event); this.ukryjKursor=false;"
+							(mouseout)="anulujLinie(); this.ukryjKursor=true" [class.zaslon]="this.funkcja=='wypelnienie'">
+				Tresc zastepcza
+			</canvas>
+			<canvas [class.brakKursora]="this.zwrocWarunekKursora()" class="doKsztaltow2" width="{{this.szerokosc3}}" height="{{this.wysokosc3}}" [style.width.px]="this.szerokosc3"
+							[style.height.px]="this.wysokosc3" (mousedown)="wywolajFunkcje($event)" (mouseup)="zakonczFunkcje($event)" (mousemove)="poruszaj($event); this.ukryjKursor=false;"
+							(mouseout)="anulujLinie(); this.ukryjKursor=true" [class.krawedzDoKsztaltow]="this.czyWPrawo || this.czyPoPrzekatnej || this.czyWDol" [class.zaslon]="this.funkcja=='wypelnienie'">
+				Tresc zastepcza
+			</canvas>
+
+			<div *ngIf="this.zwrocWarunekKursora()" class="mojKursor" [class.krawedzGumki]="this.funkcja=='gumka'" [class.ukryte]="this.ukryjKursor" [style.left.px]="this.zwrocXKursora()" [style.top.px]="this.zwrocYKursora()"
+					 [style.background]="this.zwrocMojKursor(this.funkcja,this.kolor)" [style.width.px]="this.okreslRozmiaryKursora()" [style.height.px]="this.okreslRozmiaryKursora()" ></div>
+
+			<canvas class="kartka2 bg-white" width="{{this.szerokosc2}}" height="{{this.wysokosc2}}" [style.width.px]="this.szerokosc*this.skalaRozmiaruX"
+							[style.height.px]="this.wysokosc*this.skalaRozmiaruY" (mousedown)="wywolajFunkcje($event)" (mouseup)="zakonczFunkcje($event)" (mousemove)="poruszaj($event)">
+				Tresc zastepcza
+			</canvas>
+			<div class="rozszerz3 bg-white" *ngIf="this.lupa=='normalny'" [style.margin-top.px]="stringNaNumber(this.canvas.style.height.replace('px',''))" [style.margin-left.px]="-stringNaNumber(this.canvas.style.width.replace('px',''))/2-15" (mousedown)="dodajWPrawo(1,$event,3)"></div>
+
+			<div class="przerwa bg-secondary" [style.width.px]="this.zwrocSzerokoscIWybor()"></div>
+		</div>
+
+      </div>
+
+    </main>
+
+  </section>
+  <footer class="text-success">
+    &copy; 2021 KG
+  </footer>
+
+
+</div><!-- .strona -->
