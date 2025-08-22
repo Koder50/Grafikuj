@@ -27,6 +27,23 @@ Grafikuj it's mixing of in Polish grafika (English graphics) and in Polish maluj
 
 This project last code updates were about 4 years ago. It was my early programming learning time. I know that this project in future should be refactored and modular etc. 
 
+## Challenges
+
+1. Make it possible to paint( HTML Canvas)
+2. Make all functions working
+3. Make beautifull and esthetic UI
+4. Make polygon function
+5. Make Coordinates function
+6. Make Cursor changing
+7. Make Filling or Outline changing
+8. Make color filling algorithm
+9. Make filters
+10. Make working on multiple graphics in one place(instead of buffer)
+11. Make Autosave
+12. Make app looking like desktop
+13. Make app responsive
+14. Many others
+
 ## Instruction for use
 
 1) Grafikuj user interface, there are Polish words.
