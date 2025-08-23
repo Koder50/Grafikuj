@@ -7,7 +7,7 @@ It is few years old version.
 
 ## Technologies
 
-Angular, CSS, HTML, Typescript,Javascript, Node
+Angular, <br>CSS, <br>HTML, <br>Typescript,<br>Javascript, <br>Node
 
 ## Development server
 
@@ -31,7 +31,7 @@ This project last code updates were about 4 years ago. It was my early programmi
 
 1. Make it possible to paint( HTML Canvas)
 2. Make all functions working
-3. Make beautifull and esthetic UI
+3. Make beautiful and esthetic UI
 4. Make polygon function
 5. Make Coordinates function
 6. Make Cursor changing
