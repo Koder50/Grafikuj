@@ -1,31 +1,66 @@
 # Grafikuj
 
-Angular CLI version 9.0.1.
-Node version 12.15.0 win x64. 
-For full details look at package.json . 
-It is few years old version.
+Grafikuj – a web application built with Angular that allows drawing on an HTML Canvas.
+The name is a combination of Polish words: grafika (graphics) + maluj (paint).
+
+The project was created a few years ago during my learning journey in programming. It uses Angular 9 / Node 12 and is considered an archival learning project.
+
+## Live Demo
+
+https://karolgoralczyk.pl/grafikuj/
+
+## Features
+
+- Drawing on Canvas( e.g. as big as needed polygon)
+- Fill tool with tolerance support and different filling modes
+- Outline / Fill mode
+- Input coordinates for precise drawing
+- Autosave every 15 minutes (files saved to the Downloads folder)
+- Image filters (apply multiple filters sequentially with option to revert to original)
+- Support for multiple graphics at once
+- Desktop-style UI + responsive design
+
+## Table of Contents
+- [Grafikuj](#Grafikuj) 
+- [Live Demo](#live-demo) 
+- [Features](#Features) 
+- [Table of Contents](#table-of-contents) 
+- [Screenshots](#Screenshots) 
+- [Technologies](#Technologies) 
+- [Installation and Usage](#installation-and-usage) 
+- [Project Status](#project-status) 
+- [Challenges](#Challenges)
+- [Instruction for use](#instruction-for-use) 
+
+## Screenshots
+
+<img width="1912" height="926" alt="grafikuj1" src="https://github.com/user-attachments/assets/b5514521-2df1-4458-9050-95dd77a2ee72" />
+<img width="1912" height="948" alt="grafikuj2" src="https://github.com/user-attachments/assets/c0b6db2a-fd74-44a5-b77e-2b5946652533" />
+<img width="1918" height="973" alt="grafikuj3" src="https://github.com/user-attachments/assets/560758a9-e9f2-41f9-ba18-8212d9220129" />
+<img width="1912" height="966" alt="grafikuj4" src="https://github.com/user-attachments/assets/f7a055f4-98b9-40f5-930c-c3a065f42c3d" />
 
 ## Technologies
 
-Angular, <br>CSS, <br>HTML, <br>Typescript,<br>Javascript, <br>Node
+- Angular
+- CSS
+- HTML
+- Typescript
+- Javascript
+- Node
 
-## Development server
+## Installation and Usage
 
 At start run `npm install`.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Project Status
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Archived / Legacy project – last code update: ~4 years ago
 
-## Name
+- Created as part of my frontend learning
 
-Grafikuj it's mixing of in Polish grafika (English graphics) and in Polish maluj(English paint) so Grafik(a)(mal)uj
-
-## Improvements
-
-This project last code updates were about 4 years ago. It was my early programming learning time. I know that this project in future should be refactored and modular etc. 
+- Needs refactoring (modularity, newer Angular version, better architecture)
 
 ## Challenges
 
