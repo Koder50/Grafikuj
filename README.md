@@ -39,6 +39,9 @@ https://karolgoralczyk.pl/grafikuj/
 <img width="1918" height="973" alt="grafikuj3" src="https://github.com/user-attachments/assets/560758a9-e9f2-41f9-ba18-8212d9220129" />
 <img width="1912" height="966" alt="grafikuj4" src="https://github.com/user-attachments/assets/f7a055f4-98b9-40f5-930c-c3a065f42c3d" />
 
+https://github.com/user-attachments/assets/34d09757-fb65-48af-9931-291ff85443e5
+
+
 ## Technologies
 
 - Angular
