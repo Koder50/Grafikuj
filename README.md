@@ -40,6 +40,7 @@ https://karolgoralczyk.pl/grafikuj/
 <img width="1912" height="966" alt="grafikuj4" src="https://github.com/user-attachments/assets/f7a055f4-98b9-40f5-930c-c3a065f42c3d" />
 
 https://github.com/user-attachments/assets/34d09757-fb65-48af-9931-291ff85443e5
+Polygon painting
 
 
 ## Technologies
