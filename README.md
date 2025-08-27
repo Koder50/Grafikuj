@@ -62,7 +62,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Project Status
 
-- Archived / Legacy project – last code update: ~4 years ago
+- last code update: ~4 years ago
 
 - Created as part of my frontend learning
 
