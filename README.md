@@ -43,7 +43,7 @@ https://github.com/user-attachments/assets/34d09757-fb65-48af-9931-291ff85443e5
 
 Polygon painting
 
-Download about 2 minutes movie about Polygon painting: https://karolgoralczyk.pl/grafikuj/movies/GrafikujFilm.MOV
+Download 2:23 minutes movie about Polygon painting: https://karolgoralczyk.pl/grafikuj/movies/GrafikujFilm.MOV
 
 ## Technologies
 
